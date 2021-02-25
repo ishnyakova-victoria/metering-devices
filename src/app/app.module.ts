@@ -5,11 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthorizationComponent } from './components/authorization/authorization.component';
+import { MeteringDevicesComponent } from './components/metering-devices/metering-devices.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AuthorizationComponent
+    AuthorizationComponent,
+    MeteringDevicesComponent
   ],
   imports: [
     BrowserModule,
