@@ -1,32 +1,26 @@
-<mat-card class="card">
-    <mat-card-header class="card__header">
-        <mat-card-title class="card__title">Sign in to Metering Devices</mat-card-title>
-    </mat-card-header>
+<div class="authorization">
+    <h2 class="authorization__title">Sign in to Metering Devices</h2>
+
+    <form class="form authorization__form">
+        <mat-form-field class="form__field" appearance="fill">
+            <mat-label class="form__label">Enter your email</mat-label>
+            <input class="form__input" matInput placeholder="pat@example.com" required>
+            <mat-error class="form__error">
+                Email is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
     
-    <mat-card-content class="card__content">
-        <form class="form">
-            <mat-form-field class="form__field" appearance="fill">
-                <mat-label class="form__label">Enter your email</mat-label>
-                <input class="form__input" matInput placeholder="pat@example.com" required>
-                <mat-error class="form__error">
-                    Email is <strong>required</strong>
-                </mat-error>
-            </mat-form-field>
-        
-            <mat-form-field class="form__field" appearance="fill">
-                <mat-label class="form__label">Enter your password</mat-label>
-                <input class="form__input" matInput [type]="hidePassword ? 'password' : 'text'" required>
-                <button class="form__hide-button" mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
-                    <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
-                </button>
-                <mat-error class="form__error">
-                    Password is <strong>required</strong>
-                </mat-error>
-            </mat-form-field>
-        
-            <div class="form__button-row">
-                <button class="form__button" mat-flat-button color="primary">Sign in</button>
-            </div>
-        </form>
-    </mat-card-content>
-</mat-card>
+        <mat-form-field class="form__field" appearance="fill">
+            <mat-label class="form__label">Enter your password</mat-label>
+            <input class="form__input" matInput [type]="hidePassword ? 'password' : 'text'" required>
+            <button class="form__hide-button" mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+                <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+            <mat-error class="form__error">
+                Password is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+    
+        <button class="form__button" mat-flat-button color="primary">Sign in</button>
+    </form>
+</div>

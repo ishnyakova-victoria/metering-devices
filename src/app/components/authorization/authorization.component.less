@@ -1,35 +1,36 @@
-:host {
-    display : block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.card {
-    &__header {
-        margin-bottom: 20px;
-        display: flex;
-        justify-content: center;
-    }
+.authorization {
+    min-width: 150px;
+    max-width: 500px;
+    margin: 64px auto;
+    padding: 40px;
 
     &__title {
         text-align: center;
+        margin-bottom: 40px;
     }
 }
 
 .form {
-    min-width: 150px;
-    max-width: 500px;
     width: 100%;
 
     &__field {
         width: 100%;
-        margin-bottom: 20px;
+        margin-bottom: 30px;
     }
 
-    &__button-row {
-        display: flex;
-        justify-content: flex-end;
+    &__input {
+        border-radius: 0;
+    }
+
+    &__button {
+        width: 100%;
+        border-radius: 0;
+    }
+}
+
+@media (max-width: 599px) {
+    .authorization {
+        margin: 56px auto;
+        padding: 20px;
     }
 }
