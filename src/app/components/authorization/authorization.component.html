@@ -1,26 +1,33 @@
 <div class="authorization">
-    <h2 class="authorization__title">Sign in to Metering Devices</h2>
+    <h2 class="authorization__title">Log in to Metering Devices</h2>
 
-    <form class="form authorization__form">
+    <form class="form authorization__form" [formGroup]="authorizationForm">
         <mat-form-field class="form__field" appearance="fill">
             <mat-label class="form__label">Enter your email</mat-label>
-            <input class="form__input" matInput placeholder="pat@example.com" required>
-            <mat-error class="form__error">
+            
+            <input class="form__input" matInput type="email" placeholder="pat@example.com" required formControlName="email">
+            
+            <mat-error *ngIf="authorizationForm.controls['email'].hasError('email') && !authorizationForm.controls['email'].hasError('required')">
+                Please enter a valid email address
+            </mat-error>
+            <mat-error *ngIf="authorizationForm.controls['email'].hasError('required')" class="form__error">
                 Email is <strong>required</strong>
             </mat-error>
         </mat-form-field>
-    
+
         <mat-form-field class="form__field" appearance="fill">
             <mat-label class="form__label">Enter your password</mat-label>
-            <input class="form__input" matInput [type]="hidePassword ? 'password' : 'text'" required>
-            <button class="form__hide-button" mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+            
+            <input class="form__input" matInput [type]="hidePassword ? 'password' : 'text'" required formControlName="password">
+            <button class="form__hide-button" mat-icon-button matSuffix [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword" (click)="hidePassword = !hidePassword">
                 <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
             </button>
-            <mat-error class="form__error">
+            
+            <mat-error *ngIf="authorizationForm.controls['password'].hasError('required')" class="form__error">
                 Password is <strong>required</strong>
             </mat-error>
         </mat-form-field>
-    
-        <button class="form__button" mat-flat-button color="primary">Sign in</button>
+
+        <button class="form__button" mat-flat-button color="primary" [disabled]="authorizationForm.invalid" (click)="logIn()">Log in</button>
     </form>
 </div>
