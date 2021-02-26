@@ -2,11 +2,20 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthorizationComponent } from './components/authorization/authorization.component';
 import { MeteringDevicesComponent } from './components/metering-devices/metering-devices.component';
+import { MeteringDevicesListComponent } from './components/metering-devices-list/metering-devices-list.component';
+import { AuthorizationGuard } from './guards/authorization.guard';
 
 const routes: Routes = [
   { path: 'authorization', component: AuthorizationComponent },
-  { path: 'metering-devices', component: MeteringDevicesComponent },
-  { path: '',   redirectTo: '/authorization', pathMatch: 'full' },
+  { 
+    path: 'metering-devices',
+    component: MeteringDevicesComponent,
+    canActivate: [AuthorizationGuard],
+    children: [
+      { path: '', component: MeteringDevicesListComponent }
+    ] 
+  },
+  { path: '',   redirectTo: '/metering-devices', pathMatch: 'full' },
   { path: '**', redirectTo: '/authorization' }
 ];
 
