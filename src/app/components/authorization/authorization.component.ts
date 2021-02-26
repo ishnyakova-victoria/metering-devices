@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./authorization.component.less']
 })
 export class AuthorizationComponent implements OnInit {
+  public hidePassword: boolean = true;
 
   constructor() { }
 
