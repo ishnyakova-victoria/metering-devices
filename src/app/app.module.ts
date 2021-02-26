@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule }   from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
@@ -17,19 +18,24 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthorizationComponent } from './components/authorization/authorization.component';
 import { MeteringDevicesComponent } from './components/metering-devices/metering-devices.component';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { MeteringDevicesListComponent } from './components/metering-devices-list/metering-devices-list.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthorizationComponent,
-    MeteringDevicesComponent
+    MeteringDevicesComponent,
+    ToolbarComponent,
+    MeteringDevicesListComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     MatCardModule,
     MatInputModule,
     MatButtonModule,

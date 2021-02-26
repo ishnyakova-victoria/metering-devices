@@ -1,0 +1,23 @@
+<div class="metering-devices-list">
+    <table class="table metering-devices-list__table" mat-table [dataSource]="dataSource">
+        <ng-container matColumnDef="id">
+            <th class="table__header-cell" mat-header-cell *matHeaderCellDef>ID</th>
+            <td class="table__data-cell" mat-cell *matCellDef="let element">{{ element.id }}</td>
+        </ng-container>
+    
+        <ng-container matColumnDef="name">
+            <th class="table__header-cell" mat-header-cell *matHeaderCellDef>Name</th>
+            <td class="table__data-cell" mat-cell *matCellDef="let element">{{ element.name }} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="last_active">
+            <th class="table__header-cell" mat-header-cell *matHeaderCellDef>Last Active</th>
+            <td class="table__data-cell" mat-cell *matCellDef="let element">{{ element.last_active }}</td>
+        </ng-container>
+    
+        <tr class="table__header-row" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr class="table__row" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    
+    <mat-paginator class="paginator metering-devices-list__paginator" [pageSize]="10"></mat-paginator>
+</div>
