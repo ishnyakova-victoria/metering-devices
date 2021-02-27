@@ -14,7 +14,7 @@ export class AuthorizationService {
     private _apiService: ApiService,
     private _storageService: StorageService
   ) {
-    this.isLoggedIn = this._storageService.getDataByKey(ACCESS_TOKEN) ? true : false;
+    this.isLoggedIn = this._storageService.getItem(ACCESS_TOKEN) ? true : false;
   }
 
   public logIn(email: string, password: string): Observable<any> {
@@ -24,20 +24,21 @@ export class AuthorizationService {
           const accessToken: string = response?.data?.access_token || null;
 
           if (!response || !accessToken) {
-            observer.next(null);
-            observer.complete();
+            observer.error('Ошибка авторизации');
 
             return;
           }
 
-          this._storageService.setData(ACCESS_TOKEN, accessToken);
+          this._storageService.setItem(ACCESS_TOKEN, accessToken);
           this.isLoggedIn = true;
 
           observer.next(response);
           observer.complete();
         },
         (error) => {
-          observer.error(error);
+          const logInError: string = error?.error?.error?.data?.msg || 'Ошибка авторизации';
+
+          observer.error(logInError);
         },
         () => { }
       )
@@ -45,7 +46,7 @@ export class AuthorizationService {
   }
 
   public logOut(): void {
-    this._storageService.removeDataByKey(ACCESS_TOKEN);
+    this._storageService.removeItem(ACCESS_TOKEN);
     this.isLoggedIn = false;
   }
 }

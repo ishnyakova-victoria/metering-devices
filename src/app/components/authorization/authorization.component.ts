@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthorizationService } from '../../providers/authorization.service';
 
 @Component({
@@ -18,12 +19,12 @@ export class AuthorizationComponent implements OnInit, OnDestroy {
     "password": new FormControl('', Validators.required)
   });
   public hidePassword: boolean = true;
-  public logInError: string = null;
 
   private _subscription: Array<Subscription> = [];
 
   constructor(
     private _router: Router,
+    private _matSnackBar: MatSnackBar,
     private _authorizationService: AuthorizationService
   ) { }
 
@@ -35,26 +36,23 @@ export class AuthorizationComponent implements OnInit, OnDestroy {
     });
   }
 
+  private _showErrorMessage(message: string): void {
+    this._matSnackBar.open(message, null, {
+      duration: 3000,
+      verticalPosition: 'top'
+    });
+  }
+
   public logIn(): void {
     const email: string = this.authorizationForm.controls['email'].value.trim();
-    const password: string = this.authorizationForm.controls['password'].value.trim();
+    const password: string = this.authorizationForm.controls['password'].value;
 
     this._subscription.push(this._authorizationService.logIn(email, password).subscribe(
       (result) => {
-        if (!result) {
-          this.logInError = 'Ошибка авторизации';
-
-          return;
-        }
-
-        this.logInError = null;
-        
         this._router.navigate(['/metering-devices']);
       },
       (error) => {
-        this.logInError = error?.error?.error?.data?.msg || 'Ошибка авторизации';
-
-        console.error(error);
+        this._showErrorMessage(error);
       },
       () => { }
     ));

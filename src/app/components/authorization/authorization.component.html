@@ -7,7 +7,7 @@
             
             <input class="form__input" matInput type="email" placeholder="pat@example.com" required formControlName="email">
             
-            <mat-error *ngIf="authorizationForm.controls['email'].hasError('email') && !authorizationForm.controls['email'].hasError('required')">
+            <mat-error *ngIf="authorizationForm.controls['email'].hasError('email') && !authorizationForm.controls['email'].hasError('required')" class="form__error">
                 Please enter a valid email address
             </mat-error>
             <mat-error *ngIf="authorizationForm.controls['email'].hasError('required')" class="form__error">
