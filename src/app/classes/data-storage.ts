@@ -1,10 +1,10 @@
 export class DataStorage implements Storage {
+  public readonly length: number;
+
   private _storage: any = {};
 
   constructor() { }
-
-  readonly length: number;
-
+  
   public clear(): void {
     this._storage = {};
   }
