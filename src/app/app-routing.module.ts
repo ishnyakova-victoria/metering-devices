@@ -4,9 +4,10 @@ import { AuthorizationComponent } from './components/authorization/authorization
 import { MeteringDevicesComponent } from './components/metering-devices/metering-devices.component';
 import { MeteringDevicesListComponent } from './components/metering-devices-list/metering-devices-list.component';
 import { AuthorizationGuard } from './guards/authorization.guard';
+import { NotAuthorizationGuard } from './guards/not-authorization.guard';
 
 const routes: Routes = [
-  { path: 'authorization', component: AuthorizationComponent },
+  { path: 'authorization', component: AuthorizationComponent, canActivate: [NotAuthorizationGuard]},
   { 
     path: 'metering-devices',
     component: MeteringDevicesComponent,
