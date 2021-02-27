@@ -8,10 +8,10 @@ export class StorageService {
   private _storage: Storage;
 
   constructor() {
-    this._setStorage();
+    this._initStorage();
   }
 
-  private _setStorage(): void {
+  private _initStorage(): void {
     if (this._isLocalStorageExist()) {
       this._storage = localStorage;
     } else {
@@ -28,21 +28,19 @@ export class StorageService {
 
       return true;
     } catch(error) {
-      console.error(error);
-
       return false;
     }
   }
 
-  public setData(key: string, data: any): void {
+  public setItem(key: string, data: any): void {
     this._storage.setItem(key, JSON.stringify(data));
   }
 
-  public getDataByKey(key: string): string {
+  public getItem(key: string): string {
     return JSON.parse(localStorage.getItem(key));
   }
 
-  public removeDataByKey(key: string): void {
+  public removeItem(key: string): void {
     this._storage.removeItem(key);
   }
 }
