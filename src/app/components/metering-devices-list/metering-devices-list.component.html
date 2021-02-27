@@ -1,23 +1,25 @@
-<div class="metering-devices-list">
-    <table class="table metering-devices-list__table" mat-table [dataSource]="dataSource">
+<div class="metering-devices-list" [ngClass]="{'metering-devices-list_hidden': isLoadingResults}">
+    <table class="table metering-devices-list__table" mat-table [dataSource]="dataSource" matSort matSortDisableClear="true">
         <ng-container matColumnDef="id">
-            <th class="table__header-cell" mat-header-cell *matHeaderCellDef>ID</th>
+            <th class="table__header-cell" mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
             <td class="table__data-cell" mat-cell *matCellDef="let element">{{ element.id }}</td>
         </ng-container>
     
         <ng-container matColumnDef="name">
-            <th class="table__header-cell" mat-header-cell *matHeaderCellDef>Name</th>
+            <th class="table__header-cell" mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
             <td class="table__data-cell" mat-cell *matCellDef="let element">{{ element.name }} </td>
         </ng-container>
     
         <ng-container matColumnDef="last_active">
-            <th class="table__header-cell" mat-header-cell *matHeaderCellDef>Last Active</th>
-            <td class="table__data-cell" mat-cell *matCellDef="let element">{{ element.last_active }}</td>
+            <th class="table__header-cell" mat-header-cell *matHeaderCellDef mat-sort-header>Last Active</th>
+            <td class="table__data-cell" mat-cell *matCellDef="let element">{{ element.last_active | date:'dd.MM.YYYY HH:mm' }}</td>
         </ng-container>
     
         <tr class="table__header-row" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr class="table__row" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
     
-    <mat-paginator class="paginator metering-devices-list__paginator" [pageSize]="10"></mat-paginator>
+    <mat-paginator class="paginator metering-devices-list__paginator" [length]="resultsLength" [pageSize]="perPage"></mat-paginator>
 </div>
+
+<mat-spinner class="spinner" [ngClass]="{'spinner_hidden': !isLoadingResults}"></mat-spinner>
