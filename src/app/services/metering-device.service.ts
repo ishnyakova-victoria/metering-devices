@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Observer } from 'rxjs';
 import { ApiService } from '../providers/api.service';
-import { MeteringDevice } from '../types/types';
 
 @Injectable({
   providedIn: 'root'
