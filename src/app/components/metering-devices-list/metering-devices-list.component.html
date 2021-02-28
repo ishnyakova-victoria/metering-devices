@@ -6,12 +6,12 @@
         </ng-container>
     
         <ng-container matColumnDef="name">
-            <th class="table__header-cell" mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+            <th class="table__header-cell" mat-header-cell *matHeaderCellDef mat-sort-header>Название</th>
             <td class="table__data-cell" mat-cell *matCellDef="let element">{{ element.name }} </td>
         </ng-container>
     
         <ng-container matColumnDef="last_active">
-            <th class="table__header-cell" mat-header-cell *matHeaderCellDef mat-sort-header>Last Active</th>
+            <th class="table__header-cell" mat-header-cell *matHeaderCellDef mat-sort-header>Дата последней активности</th>
             <td class="table__data-cell" mat-cell *matCellDef="let element">{{ element.last_active | date:'dd.MM.YYYY HH:mm' }}</td>
         </ng-container>
     
